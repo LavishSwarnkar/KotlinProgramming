@@ -2,18 +2,21 @@ fun main() {
     print(findSubstring("barfoothefoobarman", arrayOf("foo","bar")))
     print(findSubstring("wordgoodgoodgoodbestword", arrayOf("word","good","best","word")))
     print(findSubstring("barfoofoobarthefoobarman", arrayOf("bar","foo","the")))
+    print(findSubstring("wordgoodgoodgoodbestword", arrayOf("word","good","best","good")))
+    print(findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", arrayOf("fooo","barr","wing","ding","wing")))
 }
 
-fun findSubstring(s: String, words: Array<String>): List<Int> {
+//My solution
+private fun findSubstring(s: String, words: Array<String>): List<Int> {
     //Data
-    val res = mutableListOf<Int>()
+    val res = mutableSetOf<Int>()
     val noOfWords = words.size
     val lenOfWord = words[0].length
 
     //Create hashmap
     val map = mutableMapOf<String, Int>()
     for(word in words)
-        map[word] = 1
+        map[word] = if(map[word] == null) 1 else map[word]!!.plus(1)
 
     //Sliding window
     for(i in 0..s.length){
@@ -25,10 +28,13 @@ fun findSubstring(s: String, words: Array<String>): List<Int> {
             val curr = s.substring(j, j + lenOfWord)
 
             //Consume currWord
-            mapCopy[curr] = mapCopy[curr] ?: 0.minus(1)
+            if (mapCopy[curr] != null) {
+                mapCopy[curr] = mapCopy[curr]!!.minus(1)
 
-            if (mapCopy[curr]!! >= 0)
-                count++
+                //One Required word found
+                if (mapCopy[curr]!! >= 0)
+                    count++
+            }
 
             //Pop first word, slide the window
             val popStart = j - (noOfWords * lenOfWord)
@@ -36,16 +42,20 @@ fun findSubstring(s: String, words: Array<String>): List<Int> {
                 val pop = s.substring(popStart, popStart + lenOfWord)
 
                 //Available for consumption
-                mapCopy[pop] = mapCopy[pop] ?: 0.plus(1)
+                if (mapCopy[pop] != null) {
+                    mapCopy[pop] = mapCopy[pop]!!.plus(1)
 
-                if (mapCopy[pop]!! > 0)
-                    count--
+                    //Word no more included
+                    if (mapCopy[pop]!! > 0)
+                        count--
+                }
             }
 
+            //We're done
             if (count == noOfWords)
                 res.add(popStart + lenOfWord)
         }
     }
 
-    return res
+    return res.toList()
 }
