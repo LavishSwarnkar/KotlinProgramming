@@ -6,7 +6,7 @@ fun main() {
     binary(5)
 }
 
-var s: IntArray = IntArray(0)
+private var s: IntArray = IntArray(0)
 
 //Prints all binary string of length n
 fun binary(n: Int) {
@@ -15,7 +15,7 @@ fun binary(n: Int) {
     println()
 }
 
-fun recurse(n: Int) {
+private fun recurse(n: Int) {
     if(n == 0)
         print("${s.contentToString().replace(Regex("[ \\]\\[,]"), "")}, ")
     else {

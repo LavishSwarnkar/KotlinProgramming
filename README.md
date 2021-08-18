@@ -8,3 +8,5 @@
 [Solution](src/3.kt)
 
 ### [4. Print all n bit binary strings (in order)](src/4.kt)
+
+### [5. Print all n bit k-ary strings (in order)](src/5.kt)
