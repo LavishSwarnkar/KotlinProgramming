@@ -1,3 +1,6 @@
+/* Substring with Concatenation of All Words
+https://leetcode.com/problems/substring-with-concatenation-of-all-words/ */
+
 fun main() {
     print(findSubstring("barfoothefoobarman", arrayOf("foo","bar")))
     print(findSubstring("wordgoodgoodgoodbestword", arrayOf("word","good","best","word")))

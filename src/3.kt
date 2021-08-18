@@ -1,3 +1,6 @@
+/* 3. Buddy Strings
+https://leetcode.com/problems/buddy-strings/ */
+
 fun main() {
     print(buddyStrings("abc", "acd"))
     print(buddyStrings("VALISH", "LAVISH"))
@@ -7,14 +10,6 @@ fun main() {
     print(buddyStrings("aaaaaaabc", "aaaaaaacb"))
 }
 
-/**
- *
-
-
-"aa"
-"aa"
-
- */
 fun buddyStrings(s: String, goal: String): Boolean {
     if(s.length != goal.length) return false
 

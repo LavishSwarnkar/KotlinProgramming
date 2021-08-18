@@ -1,3 +1,6 @@
+/* 2. Duplicate Zeroes
+https://leetcode.com/problems/duplicate-zeros/ */
+
 fun main() {
     test(intArrayOf(1,0,2,0,3,4))
     test(intArrayOf(1,0,2,0,0,4))

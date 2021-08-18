@@ -1,3 +1,6 @@
+/* Substring with Concatenation of All Words
+https://leetcode.com/problems/substring-with-concatenation-of-all-words/ */
+
 fun main() {
     //Words of variable length in between
     print(findSubstring("barfoothefoobarman", arrayOf("foo","bar")))
